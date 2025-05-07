@@ -38,12 +38,12 @@ export default function Login() {
         bg-[#222222] flex-col justify-center 
             items-center'>
         <TouchableOpacity onPress={handleAuth}>
-            <View className='bg-[##AB9FF2] min-w-64 px-5 py-3
+            <View className='bg-[#AB9FF2] min-w-64 px-5 py-3
             flex-row items-center justify-center gap-3 rounded-full'>
                 <View className='flex-row justify-center
                  items-center gap-3'>
                     <Text 
-                        className='font-inter text-xl'
+                        className='font-lato-bold text-xl'
                         style={{
                             fontWeight: 200,
                         }}>

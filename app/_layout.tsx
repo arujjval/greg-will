@@ -6,14 +6,23 @@ import { AuthProvider, AuthContextType } from '@/supabase/globalAuthContext';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useEffect, useState } from 'react';
 import supabase from '@/supabase/supabase';
+import { PaperProvider } from 'react-native-paper';
 import 'react-native-reanimated';
 import "../global.css"
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    Inter: require('../assets/fonts/Inter-VariableFont_opsz,wght.ttf'),
-    InterItalic: require('../assets/fonts/Inter-Italic-VariableFont_opsz,wght.ttf'),
+    'Lato-Black': require('../assets/fonts/Lato-Black.ttf'),
+    'Lato-BlackItalic': require('../assets/fonts/Lato-BlackItalic.ttf'),
+    'Lato-Bold': require('../assets/fonts/Lato-Bold.ttf'),
+    'Lato-BoldItalic': require('../assets/fonts/Lato-BoldItalic.ttf'),
+    'Lato-Regular': require('../assets/fonts/Lato-Regular.ttf'),
+    'Lato-Italic': require('../assets/fonts/Lato-Italic.ttf'),
+    'Lato-Light': require('../assets/fonts/Lato-Light.ttf'),
+    'Lato-LightItalic': require('../assets/fonts/Lato-LightItalic.ttf'),
+    'Lato-Thin': require('../assets/fonts/Lato-Thin.ttf'),
+    'Lato-ThinItalic': require('../assets/fonts/Lato-ThinItalic.ttf'),
   });
 
   const [session, setSession] = useState<AuthContextType | null>(null);
@@ -32,12 +41,14 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={colorScheme === 'light' ? DarkTheme : DefaultTheme}>
       <AuthProvider value={session? session : { isAuthenticated: false, user: null }}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
-        <StatusBar style="auto" />
+        <PaperProvider>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+          <StatusBar style="auto" />
+        </PaperProvider>
       </AuthProvider>
     </ThemeProvider>
   );
